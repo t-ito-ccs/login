@@ -56,20 +56,21 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationProvider getAuthenticationProvider() {
-        // AuthenticationProvider
+        // 独自のAuthenticationProvider
         // (5) 認証処理の呼び出しを行う
         return new LoginAuthenticationProvider();
     }
 
     @Bean
     UserDetailsService getUserDetailService() {
-      //パスワードの検証時に使用するハッシュ関数
-      return new LoginService();
+        // 独自のUserDetailService
+        // jdbcAuthenticationのユーザ情報取得を行うサービス
+        return new LoginService();
     }
 
     @Bean
     BCryptPasswordEncoder getPasswordEncoder() {
-      //パスワードの検証時に使用するハッシュ関数
-      return new BCryptPasswordEncoder();
+        // パスワードの検証時に使用するハッシュ関数
+        return new BCryptPasswordEncoder();
     }
 }
